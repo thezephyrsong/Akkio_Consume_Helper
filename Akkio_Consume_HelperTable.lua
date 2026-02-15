@@ -1929,13 +1929,13 @@ BuildBuffStatusUI = function()
             -- If this is us and the buff is allowed to be announced
             if name == playerName and buffdata.canBeAnounced then
               -- New Message Format: [Name] (Class) needs [Buff] in Group [X]
-              local raidMsg = string.format("Need %s in Group %d (%s - %s)", buffName, subgroup, playerName, localizedClass)
+              local raidMsg = string.format("Need %s in Group %d (%s)", buffName, subgroup, localizedClass)
               SendChatMessage(raidMsg, "RAID")
             end
           end
         elseif GetNumPartyMembers() > 0 and buffdata.canBeAnounced then
           -- Party version (no subgroups in standard party)
-          local partyMsg = string.format("Need %s (%s - %s)", buffName, playerName, localizedClass)
+          local partyMsg = string.format("Need %s (%s)", buffName, localizedClass)
           SendChatMessage(partyMsg, "PARTY")
         end
       end
