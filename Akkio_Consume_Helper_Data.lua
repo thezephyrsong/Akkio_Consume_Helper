@@ -43,7 +43,7 @@ Akkio_Consume_Helper_Data.allBuffs = {
   --concoction itemIDs fixed
 
   { header = true,                               name = "Special Potions & Consumables" },
-  { name = "Major Troll's Blood Potion",         icon = "Interface\\Icons\\inv_potion_80",               buffIcon = "Interface\\Icons\\INV_Potion_80",                                                                                           canBeAnounced = false, duration = 3600, itemID = 20004 },
+  { name = "Major Troll's Blood Potion",         icon = "Interface\\Icons\\inv_potion_80",               buffIcon = "Interface\\Icons\\INV_Potion_79",                                                                                           canBeAnounced = false, duration = 3600, itemID = 20004 },
   { name = "Mageblood Potion",                   icon = "Interface\\Icons\\Inv_Potion_45",               buffIcon = "Interface\\Icons\\INV_Potion_45",                                                                                           canBeAnounced = false, duration = 3600, itemID = 20007 },
   { name = "Gift of Arthas",                     icon = "Interface\\Icons\\Inv_Potion_28",               buffIcon = "Interface\\Icons\\Spell_Shadow_FingerOfDeath",                                                                              canBeAnounced = false, duration = 1800, itemID = 9088 },
   { name = "Winterfall Firewater",               icon = "Interface\\Icons\\INV_Potion_92",               buffIcon = "Interface\\Icons\\INV_Potion_92",                                                                                           canBeAnounced = false, duration = 1200, itemID = 12820 },
