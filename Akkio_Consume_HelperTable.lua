@@ -1914,23 +1914,29 @@ BuildBuffStatusUI = function()
         return
       end
 
-      -- Regular buff handling (for consumables)
+    -- Regular buff handling (for consumables)
       if currentlyHasBuff then
         DEFAULT_CHAT_FRAME:AddMessage("|cff98FB98You already have " .. buffName .. " buff active.|r")
       else
+        -- Get Class info: localizedClass (e.g., "Mage"), englishClass (e.g., "MAGE")
+        local localizedClass, _ = UnitClass("player")
+        local playerName = UnitName("player")
+
         if GetNumRaidMembers() > 0 then
           for i = 1, GetNumRaidMembers() do
             local name, _, subgroup, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
-            if name == UnitName("player") and buffdata.canBeAnounced then
-              SendChatMessage("|cffFF6B6BNeed " .. buffName .. " in Group " .. subgroup .. "|r", "RAID")
+            
+            -- If this is us and the buff is allowed to be announced
+            if name == playerName and buffdata.canBeAnounced then
+              -- New Message Format: [Name] (Class) needs [Buff] in Group [X]
+              local raidMsg = string.format("Need %s in Group %d (%s - %s)", buffName, subgroup, playerName, localizedClass)
+              SendChatMessage(raidMsg, "RAID")
             end
           end
         elseif GetNumPartyMembers() > 0 and buffdata.canBeAnounced then
-          SendChatMessage("|cffFF6B6BNeed " .. buffName .. "|r", "PARTY")
-        end
-        --DEFAULT_CHAT_FRAME:AddMessage("I need " .. buffName)
-        if buffdata.canBeAnounced == false and findItemInBagAndGetAmount(buffdata.name) > 0 then
-          findAndUseItemByName(buffdata.name)
+          -- Party version (no subgroups in standard party)
+          local partyMsg = string.format("Need %s (%s - %s)", buffName, playerName, localizedClass)
+          SendChatMessage(partyMsg, "PARTY")
         end
       end
     end)
