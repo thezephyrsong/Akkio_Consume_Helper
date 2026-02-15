@@ -1918,13 +1918,9 @@ BuildBuffStatusUI = function()
       if currentlyHasBuff then
         DEFAULT_CHAT_FRAME:AddMessage("|cff98FB98You already have " .. buffName .. " buff active.|r")
       else
-        -- Get Class info: localizedClass (e.g., "Mage"), englishClass (e.g., "MAGE")
-        local localizedClass, _ = UnitClass("player")
-        local playerName = UnitName("player")
-
         if GetNumRaidMembers() > 0 then
           for i = 1, GetNumRaidMembers() do
-            local name, _, subgroup, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
+            local name, _, subgroup, _, localizedClass, _, _, _, _ = GetRaidRosterInfo(i)
             
             -- If this is us and the buff is allowed to be announced
             if name == playerName and buffdata.canBeAnounced then
