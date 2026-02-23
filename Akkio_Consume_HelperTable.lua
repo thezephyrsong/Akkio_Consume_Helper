@@ -1914,15 +1914,15 @@ BuildBuffStatusUI = function()
         return
       end
 
-      -- Regular buff handling (for consumables)
+    -- Regular buff handling (for consumables)
       if currentlyHasBuff then
         DEFAULT_CHAT_FRAME:AddMessage("|cff98FB98You already have " .. buffName .. " buff active.|r")
       else
         if GetNumRaidMembers() > 0 then
           for i = 1, GetNumRaidMembers() do
-            local name, _, subgroup, _, _, _, _, _, _, _ = GetRaidRosterInfo(i)
+            local name, _, subgroup, _, class, _, _, _, _, _ = GetRaidRosterInfo(i)
             if name == UnitName("player") and buffdata.canBeAnounced then
-              SendChatMessage("|cffFF6B6BNeed " .. buffName .. " in Group " .. subgroup .. "|r", "RAID")
+              SendChatMessage(|cffFF6B6B" .. class .. " needs " .. buffName .. " in Group " .. subgroup .. "|r", "RAID")
             end
           end
         elseif GetNumPartyMembers() > 0 and buffdata.canBeAnounced then
