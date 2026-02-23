@@ -1925,7 +1925,7 @@ BuildBuffStatusUI = function()
               SendChatMessage(|cffFF6B6B" .. class .. " needs " .. buffName .. " in Group " .. subgroup .. "|r", "RAID")
             end
           end
-        elseif GetNumPartyMembers() > 0 and buffdata.canBeAnounced then
+       elseif GetNumPartyMembers() > 0 and buffdata.canBeAnounced then
           SendChatMessage("|cffFF6B6BNeed " .. buffName .. "|r", "PARTY")
         end
         --DEFAULT_CHAT_FRAME:AddMessage("I need " .. buffName)
@@ -1933,7 +1933,7 @@ BuildBuffStatusUI = function()
           findAndUseItemByName(buffdata.name)
         end
       end
-    end)
+    end
 
     -- Add tooltip functionality
     icon:SetScript("OnEnter", function()
