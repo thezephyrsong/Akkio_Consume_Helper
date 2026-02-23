@@ -1920,22 +1920,20 @@ BuildBuffStatusUI = function()
       else
         if GetNumRaidMembers() > 0 then
           for i = 1, GetNumRaidMembers() do
-            local name, _, subgroup, _, localizedClass, _, _, _, _ = GetRaidRosterInfo(i)
-            
-            -- If this is us and the buff is allowed to be announced
-            if name == playerName and buffdata.canBeAnounced then
-              -- New Message Format: [Name] (Class) needs [Buff] in Group [X]
-              local raidMsg = string.format("Need %s in Group %d (%s)", buffName, subgroup, localizedClass)
-              SendChatMessage(raidMsg, "RAID")
+            local name, _, subgroup, _, class, _, _, _, _, _ = GetRaidRosterInfo(i)
+            if name == UnitName("player") and buffdata.canBeAnounced then
+              SendChatMessage(|cffFF6B6B" .. class .. " needs " .. buffName .. " in Group " .. subgroup .. "|r", "RAID")
             end
           end
-        elseif GetNumPartyMembers() > 0 and buffdata.canBeAnounced then
-          -- Party version (no subgroups in standard party)
-          local partyMsg = string.format("Need %s (%s)", buffName, localizedClass)
-          SendChatMessage(partyMsg, "PARTY")
+       elseif GetNumPartyMembers() > 0 and buffdata.canBeAnounced then
+          SendChatMessage("|cffFF6B6BNeed " .. buffName .. "|r", "PARTY")
+        end
+        --DEFAULT_CHAT_FRAME:AddMessage("I need " .. buffName)
+        if buffdata.canBeAnounced == false and findItemInBagAndGetAmount(buffdata.name) > 0 then
+          findAndUseItemByName(buffdata.name)
         end
       end
-    end)
+    end
 
     -- Add tooltip functionality
     icon:SetScript("OnEnter", function()
