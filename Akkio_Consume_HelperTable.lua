@@ -1933,7 +1933,7 @@ BuildBuffStatusUI = function()
           findAndUseItemByName(buffdata.name)
         end
       end
-    end
+    end)
 
     -- Add tooltip functionality
     icon:SetScript("OnEnter", function()
