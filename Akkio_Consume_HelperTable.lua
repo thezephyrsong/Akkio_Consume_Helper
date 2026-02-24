@@ -1922,11 +1922,11 @@ BuildBuffStatusUI = function()
           for i = 1, GetNumRaidMembers() do
             local name, _, subgroup, _, class, _, _, _, _, _ = GetRaidRosterInfo(i)
             if name == UnitName("player") and buffdata.canBeAnounced then
-              SendChatMessage("|cffFF6B6B" .. class .. " needs " .. buffName .. " in Group " .. subgroup .. "|r", "RAID")
+              SendChatMessage("|cffFF6B6B" .. class .. " requests " .. buffName .. " in Group " .. subgroup .. "|r", "RAID")
             end
           end
        elseif GetNumPartyMembers() > 0 and buffdata.canBeAnounced then
-          SendChatMessage("|cffFF6B6BNeed " .. buffName .. "|r", "PARTY")
+          SendChatMessage("|cffFF6B6BRequesting " .. buffName .. "|r", "PARTY")
         end
         --DEFAULT_CHAT_FRAME:AddMessage("I need " .. buffName)
         if buffdata.canBeAnounced == false and findItemInBagAndGetAmount(buffdata.name) > 0 then
